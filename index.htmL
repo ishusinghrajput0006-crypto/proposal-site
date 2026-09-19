@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Just For You 💌</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    background:
+    radial-gradient(circle at top,#5b174f 0%,#21091f 45%,#09030d 100%);
+    color:white;
+}
+
+canvas{
+    position:fixed;
+    inset:0;
+    z-index:0;
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.card{
+    width:100%;
+    max-width:430px;
+    min-height:540px;
+    padding:35px 25px;
+    border-radius:30px;
+
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+    0 25px 80px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.12);
+
+    text-align:center;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    animation:cardIn .7s ease;
+}
+
+.hidden{
+    display:none;
+}
+
+.emoji{
+    font-size:65px;
+    margin-bottom:20px;
+    animation:pulse 1.7s infinite;
+}
+
+h1{
+    font-size:30px;
+    line-height:1.25;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:16px;
+    line-height:1.8;
+    color:#f4eaf2;
+    margin-bottom:17px;
+}
+
+.highlight{
+    color:#ff9dcc;
+    font-weight:600;
+}
+
+button{
+    border:none;
+    padding:14px 26px;
+    border-radius:50px;
+    font-size:15px;
+    cursor:pointer;
+    margin:7px;
+    transition:.3s;
+}
+
+.primary{
+    color:white;
+    background:linear-gradient(135deg,#ff4f9a,#d72f78);
+    box-shadow:0 8px 25px rgba(255,79,154,.25);
+}
+
+.primary:hover{
+    transform:translateY(-3px) scale(1.03);
+}
+
+.secondary{
+    background:rgba(255,255,255,.1);
+    color:white;
+    border:1px solid rgba(255,255,255,.2);
+}
+
+.small{
+    font-size:12px;
+    color:#cdbdca;
+    margin-top:15px;
+}
+
+.progress{
+    position:absolute;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    width:75%;
+    max-width:320px;
+    height:4px;
+    background:rgba(255,255,255,.12);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progressBar{
+    height:100%;
+    width:20%;
+    background:#ff7db8;
+    transition:.5s;
+}
+
+@keyframes cardIn{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.12)}
+}
+
+.heart{
+    position:fixed;
+    bottom:-30px;
+    font-size:18px;
+    opacity:.45;
+    animation:floatUp linear forwards;
+    z-index:1;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(0) rotate(0);
+        opacity:0;
+    }
+    15%{
+        opacity:.5;
+    }
+    to{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="container">
+
+<div class="progress">
+    <div class="progressBar" id="bar"></div>
+</div>
+
+<!-- PAGE 1 -->
+<div class="card" id="page1">
+
+    <div class="emoji">💌</div>
+
+    <h1>Ek chhoti si baat hai...</h1>
+
+    <p>
+        Ye koi normal message nahi hai.
+        Iske peeche thoda sa time,
+        thoda sa effort,
+        aur honestly...
+        <span class="highlight">kaafi saari feelings hain.</span>
+    </p>
+
+    <p>
+        Isliye please isko thoda sa
+        patience ke saath dekhna. :)
+    </p>
+
+    <button class="primary" onclick="nextPage(2)">
+        Open this 💗
+    </button>
+
+</div>
+
+
+<!-- PAGE 2 -->
+<div class="card hidden" id="page2">
+
+    <div class="emoji">🌙</div>
+
+    <h1>Ek cheez clear hai...</h1>
+
+    <p>
+        Tumne kaha tha ki
+        <span class="highlight">"tum mujhe reserve nahi karti."</span>
+    </p>
+
+    <p>
+        Aur honestly,
+        main tumhe reserve karne ki baat
+        kar bhi nahi raha.
+    </p>
+
+    <p>
+        Kisi ko apna banane se pehle
+        uski choice aur comfort important hoti hai.
+    </p>
+
+    <button class="primary" onclick="nextPage(3)">
+        Continue 💌
+    </button>
+
+</div>
+
+
+<!-- PAGE 3 -->
+<div class="card hidden" id="page3">
+
+    <div class="emoji">✨</div>
+
+    <h1>Bas ek feeling hai...</h1>
+
+    <p>
+        Pata nahi exactly kab,
+        but tumse baat karna
+        mujhe genuinely achha lagne laga.
+    </p>
+
+    <p>
+        Isliye ye website,
+        ye little surprise,
+        aur ye saara effort...
+        <span class="highlight">sirf show-off ke liye nahi hai.</span>
+    </p>
+
+    <p>
+        Main bas chahta hoon ki tumhe
+        pata ho ki someone is making
+        a little effort for you.
+    </p>
+
+    <button class="primary" onclick="nextPage(4)">
+        One last thing ❤️
+    </button>
+
+</div>
+
+
+<!-- PAGE 4 -->
+<div class="card hidden" id="page4">
+
+    <div class="emoji">🥹</div>
+
+    <h1>So... what do you think?</h1>
+
+    <p>
+        Main tumse koi pressure wala answer
+        nahi maang raha.
+    </p>
+
+    <p>
+        Bas agar tumhe bhi lagta hai ki
+        hum dono ek doosre ko
+        thoda aur jaan sakte hain...
+    </p>
+
+    <p>
+        toh <span class="highlight">ek chance</span>
+        diya ja sakta hai.
+    </p>
+
+    <button class="primary" onclick="accepted()">
+        Maybe... ❤️
+    </button>
+
+    <button class="secondary" onclick="nextPage(5)">
+        Let me think 😌
+    </button>
+
+</div>
+
+
+<!-- PAGE 5 -->
+<div class="card hidden" id="page5">
+
+    <div class="emoji">🫶</div>
+
+    <h1>No pressure. Seriously.</h1>
+
+    <p>
+        Tumhara answer jo bhi ho,
+        main uski respect karunga.
+    </p>
+
+    <p>
+        Bas dil mein jo tha,
+        woh thoda different way mein
+        tumhare saamne rakhna tha.
+    </p>
+
+    <p>
+        Aur haan...
+        <span class="highlight">
+        itna effort karne ke baad bhi
+        agar tum smile kar do,
+        toh effort successful. :)
+        </span>
+    </p>
+
+    <p class="small">
+        Made with a little courage,
+        a little effort & lots of good vibes. 💗
+    </p>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* PAGE SYSTEM */
+
+function nextPage(page){
+
+    for(let i=1;i<=5;i++){
+        document
+        .getElementById("page"+i)
+        .classList.add("hidden");
+    }
+
+    document
+    .getElementById("page"+page)
+    .classList.remove("hidden");
+
+    document.getElementById("bar").style.width =
+        ((page-1)*25 + 20) + "%";
+}
+
+
+/* FINAL BUTTON */
+
+function accepted(){
+
+    document.getElementById("page4").innerHTML = `
+
+        <div class="emoji">🥹❤️</div>
+
+        <h1>Okay... that made me smile.</h1>
+
+        <p>
+            Then let's not overthink it.
+        </p>
+
+        <p>
+            No big promises,
+            no unnecessary pressure.
+        </p>
+
+        <p>
+            Bas thoda aur baat karenge,
+            ek doosre ko samjhenge,
+            aur dekhte hain
+            <span class="highlight">
+            story kaha tak jaati hai. ✨
+            </span>
+        </p>
+
+        <button class="primary" onclick="nextPage(5)">
+            Finish 💌
+        </button>
+    `;
+
+}
+
+
+/* FLOATING HEARTS */
+
+function createHeart(){
+
+    const heart=document.createElement("div");
+
+    heart.className="heart";
+
+    const icons=["❤️","♡","💗","✨","💕"];
+
+    heart.innerText =
+        icons[Math.floor(Math.random()*icons.length)];
+
+    heart.style.left =
+        Math.random()*100+"vw";
+
+    heart.style.animationDuration =
+        (5+Math.random()*5)+"s";
+
+    heart.style.fontSize =
+        (12+Math.random()*18)+"px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },10000);
+}
+
+setInterval(createHeart,700);
+
+
+/* BACKGROUND STARS */
+
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+}
+
+resize();
+
+window.addEventListener("resize",resize);
+
+let stars=[];
+
+for(let i=0;i<80;i++){
+
+    stars.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        r:Math.random()*1.5,
+        speed:Math.random()*.3
+    });
+}
+
+function animate(){
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="rgba(255,255,255,.7)";
+
+    stars.forEach(s=>{
+
+        ctx.beginPath();
+
+        ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+
+        ctx.fill();
+
+        s.y-=s.speed;
+
+        if(s.y<0){
+            s.y=canvas.height;
+        }
+
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+</script>
+
+</body>
+</html>
