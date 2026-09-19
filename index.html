@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16001f,#3b092f,#14001c);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.container{
+    width:92%;
+    max-width:430px;
+    text-align:center;
+}
+
+.card{
+    background:rgba(255,255,255,0.09);
+    border:1px solid rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    border-radius:28px;
+    padding:35px 24px;
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+    animation:appear 1s ease;
+}
+
+.heart{
+    font-size:55px;
+    animation:beat 1.3s infinite;
+    margin-bottom:15px;
+}
+
+h1{
+    font-size:29px;
+    margin-bottom:18px;
+}
+
+p{
+    font-size:16px;
+    line-height:1.8;
+    color:#f5eaf2;
+    margin-bottom:18px;
+}
+
+.highlight{
+    color:#ff9ed2;
+    font-weight:bold;
+}
+
+button{
+    border:none;
+    padding:14px 25px;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    margin:7px;
+    transition:.3s;
+}
+
+.next{
+    background:#ff5fa2;
+    color:white;
+}
+
+.next:hover{
+    transform:scale(1.06);
+}
+
+.yes{
+    background:#fff;
+    color:#d62d78;
+}
+
+.hidden{
+    display:none;
+}
+
+.small{
+    font-size:13px;
+    color:#cdb8c8;
+    margin-top:18px;
+}
+
+.floating{
+    position:absolute;
+    font-size:20px;
+    animation:float 7s linear infinite;
+    opacity:.5;
+}
+
+@keyframes beat{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.18)}
+}
+
+@keyframes appear{
+    from{opacity:0;transform:translateY(25px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes float{
+    from{
+        transform:translateY(110vh) rotate(0deg);
+    }
+    to{
+        transform:translateY(-10vh) rotate(360deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="floating" style="left:10%;animation-delay:0s;">❤️</div>
+<div class="floating" style="left:25%;animation-delay:2s;">♡</div>
+<div class="floating" style="left:70%;animation-delay:1s;">✨</div>
+<div class="floating" style="left:88%;animation-delay:4s;">❤️</div>
+
+<div class="container">
+
+    <!-- PAGE 1 -->
+    <div class="card" id="page1">
+        <div class="heart">❤️</div>
+
+        <h1>Ek baat kehni thi...</h1>
+
+        <p>
+            Tumne kaha tha na,<br>
+            <span class="highlight">"Hum tumko reserve nahi karte."</span>
+        </p>
+
+        <p>
+            Sach bolun toh mujhe bhi tumhe
+            kisi cheez ke liye force nahi karna.
+            Bas ek baar dil ki baat kehni hai.
+        </p>
+
+        <button class="next" onclick="showPage(2)">
+            Aage dekho 💌
+        </button>
+    </div>
+
+
+    <!-- PAGE 2 -->
+    <div class="card hidden" id="page2">
+
+        <div class="heart">🥹</div>
+
+        <h1>Reservation ki baat nahi hai...</h1>
+
+        <p>
+            Main tumhe reserve karne ki baat nahi kar raha.
+            Main bas itna keh raha hoon ki
+            <span class="highlight">main tumhare saath genuinely rehna chahta hoon.</span>
+        </p>
+
+        <p>
+            Shayad main perfect nahi hoon,
+            kabhi stupid bhi lag sakta hoon,
+            kabhi zyada effort bhi kar deta hoon...
+            but jo bhi karta hoon,
+            <span class="highlight">real mein karta hoon.</span>
+        </p>
+
+        <button class="next" onclick="showPage(3)">
+            Ek aur baat ❤️
+        </button>
+    </div>
+
+
+    <!-- PAGE 3 -->
+    <div class="card hidden" id="page3">
+
+        <div class="heart">🌙</div>
+
+        <h1>Ye koi movie scene nahi...</h1>
+
+        <p>
+            Main tumhare liye ye sab isliye nahi kar raha
+            kyunki mujhe koi perfect love story banani hai.
+        </p>
+
+        <p>
+            Bas tum achhi lagti ho.
+            Tumse baat karna achha lagta hai.
+            Tumhari presence achhi lagti hai.
+        </p>
+
+        <p>
+            Aur pata nahi kab,
+            lekin tum mere liye
+            <span class="highlight">thodi si special ban gayi.</span>
+        </p>
+
+        <button class="next" onclick="showPage(4)">
+            Last wali baat 💗
+        </button>
+    </div>
+
+
+    <!-- PAGE 4 -->
+    <div class="card hidden" id="page4">
+
+        <div class="heart">💗</div>
+
+        <h1>Toh... ek chance dogi?</h1>
+
+        <p>
+            Main tumse koi promise nahi karwa raha,
+            na hi tumhare upar koi pressure hai.
+        </p>
+
+        <p>
+            Bas agar tumhe bhi thoda sa lagta hai
+            ki hum dono ke beech kuch achha ho sakta hai...
+        </p>
+
+        <p>
+            toh <span class="highlight">ek chance mujhe de dena.</span>
+        </p>
+
+        <p>
+            Main baaki sab apne efforts se prove kar dunga.
+            ❤️
+        </p>
+
+        <button class="yes" onclick="yesClicked()">
+            Okay... let's see ❤️
+        </button>
+
+        <button class="next" onclick="showPage(5)">
+            Abhi answer nahi 😌
+        </button>
+    </div>
+
+
+    <!-- PAGE 5 -->
+    <div class="card hidden" id="page5">
+
+        <div class="heart">🫶</div>
+
+        <h1>Bas itna hi kehna tha...</h1>
+
+        <p>
+            Tum mujhe reserve karo ya na karo,
+            main tumhe kisi cheez ke liye force nahi karunga.
+        </p>
+
+        <p>
+            Bas jo feel karta hoon,
+            woh honestly tumhare saamne rakh diya.
+        </p>
+
+        <p>
+            <span class="highlight">
+            Ab jo bhi tumhara dil kahe,
+            wahi mere liye enough hai. ❤️
+            </span>
+        </p>
+
+        <p class="small">
+            P.S. Ye chhoti si website banane mein
+            jitna effort laga hai,
+            usse zyada effort tumhe samajhne mein lagana chahta hoon. :)
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+function showPage(num){
+
+    for(let i=1;i<=5;i++){
+        document.getElementById("page"+i)
+        .classList.add("hidden");
+    }
+
+    document.getElementById("page"+num)
+    .classList.remove("hidden");
+}
+
+function yesClicked(){
+
+    document.getElementById("page4").innerHTML = `
+        <div class="heart">🥹❤️</div>
+
+        <h1>Seriously?</h1>
+
+        <p>
+            Bas phir...
+            ab mujhe aur kuch nahi chahiye.
+        </p>
+
+        <p>
+            Main tumhe special feel karane ki
+            poori koshish karta rahunga.
+        </p>
+
+        <p>
+            <span class="highlight">
+            Let's see where this little story takes us. ❤️
+            </span>
+        </p>
+
+        <button class="next" onclick="showPage(5)">
+            One last thing 💌
+        </button>
+    `;
+}
+
+</script>
+
+</body>
+</html>
