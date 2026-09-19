@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little Something ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#fff7fa,#ffeef4,#fff9fb);
+    color:#5b4650;
+    overflow:hidden;
+}
+
+.card{
+    width:90%;
+    max-width:430px;
+    padding:35px 25px;
+    text-align:center;
+    background:rgba(255,255,255,.85);
+    border-radius:28px;
+    box-shadow:0 12px 35px rgba(180,120,140,.15);
+    border:1px solid #f8dfe7;
+    animation:show .8s ease;
+}
+
+.emoji{
+    font-size:48px;
+    margin-bottom:12px;
+}
+
+h1{
+    color:#d85b7f;
+    font-size:29px;
+    margin-bottom:15px;
+}
+
+p{
+    font-size:16px;
+    line-height:1.7;
+    margin:12px 0;
+}
+
+.special{
+    color:#d85b7f;
+    font-size:19px;
+    font-weight:600;
+}
+
+.buttons{
+    margin-top:25px;
+}
+
+button{
+    border:none;
+    border-radius:25px;
+    padding:13px 28px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#accept{
+    background:#e982a0;
+    color:white;
+    box-shadow:0 6px 15px rgba(217,112,145,.2);
+}
+
+#accept:hover{
+    transform:scale(1.05);
+}
+
+#no{
+    display:none;
+    margin-left:8px;
+    background:#f3eef0;
+    color:#76656b;
+}
+
+.timer{
+    margin-top:18px;
+    font-size:14px;
+    color:#9a7d87;
+}
+
+#success{
+    display:none;
+    animation:fade .8s ease;
+}
+
+.heart{
+    position:fixed;
+    bottom:-30px;
+    font-size:18px;
+    color:#e982a0;
+    animation:float 6s linear forwards;
+    pointer-events:none;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0);
+        opacity:0;
+    }
+    20%{opacity:.8;}
+    100%{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+
+@keyframes show{
+    from{
+        opacity:0;
+        transform:scale(.9);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div id="question">
+
+        <div class="emoji">🌷</div>
+
+        <h1>Ek chhoti si baat... ❤️</h1>
+
+        <p>
+            Tumhare liye ek little surprise hai.
+            Bas ek baar dil se soch kar answer karna. 🫶🏻
+        </p>
+
+        <p class="special">
+            Because you deserve all the good things. ✨
+        </p>
+
+        <p>
+            Kya tum is little surprise ko accept karogi? 💌
+        </p>
+
+        <div class="buttons">
+
+            <button id="accept" onclick="accepted()">
+                Accept ❤️
+            </button>
+
+            <button id="no" onclick="notAccepted()">
+                No 💔
+            </button>
+
+        </div>
+
+        <div class="timer" id="timer">
+            No option 20 seconds baad available hoga... ⏳
+        </div>
+
+    </div>
+
+
+    <div id="success">
+
+        <div class="emoji">🥹❤️</div>
+
+        <h1>Yayyy! 💕</h1>
+
+        <p>
+            Thank you for accepting. 🫶🏻
+        </p>
+
+        <p>
+            Bas ek smile ke saath is moment ko yaad rakhna.
+            Tumhari happiness genuinely important hai. 🌷
+        </p>
+
+        <p class="special">
+            You deserve to feel special, today and always. ✨
+        </p>
+
+        <p>
+            And yes... this little surprise was made just to
+            bring a small smile to your face. ❤️
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let seconds = 20;
+
+const timer = document.getElementById("timer");
+const noButton = document.getElementById("no");
+
+const countdown = setInterval(function(){
+
+    seconds--;
+
+    if(seconds > 0){
+
+        timer.innerHTML =
+        "No option " + seconds +
+        " seconds baad available hoga... ⏳";
+
+    }else{
+
+        clearInterval(countdown);
+
+        noButton.style.display = "inline-block";
+
+        timer.innerHTML =
+        "Okay... ab tumhari choice hai. 😊";
+
+    }
+
+},1000);
+
+
+function accepted(){
+
+    document.getElementById("question").style.display="none";
+
+    document.getElementById("success").style.display="block";
+
+    createHearts();
+
+}
+
+
+function notAccepted(){
+
+    timer.innerHTML =
+    "It's okay ❤️ Thank you for being honest.";
+
+}
+
+
+function createHearts(){
+
+    for(let i=0;i<15;i++){
+
+        setTimeout(function(){
+
+            const heart=document.createElement("div");
+
+            heart.className="heart";
+
+            const symbols=["❤️","💕","🌷","✨","💗"];
+
+            heart.innerHTML =
+            symbols[Math.floor(Math.random()*symbols.length)];
+
+            heart.style.left =
+            Math.random()*100+"vw";
+
+            heart.style.animationDuration =
+            (4+Math.random()*3)+"s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(function(){
+                heart.remove();
+            },7000);
+
+        },i*150);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
